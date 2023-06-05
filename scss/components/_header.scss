@@ -1,0 +1,44 @@
+header{
+    background-color: rgb(52, 58, 64);
+    height: 80px;
+}
+.logo_pirata{
+    display: flex;
+    height: 60px;
+    justify-content: center;
+}
+.nav{
+    ul{
+        li{
+            a{
+                display: flex;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-size: 1.2rem;
+                text-decoration: none;
+                color: white;
+                justify-content:space-around ;
+            }
+        }
+    }
+    .formulario{
+        margin-left: 1600px;
+        position: relative;
+        bottom: 60px;
+        .input{
+            height: 40px;
+            border: 1px solid black;
+            border-radius: .6rem;
+        }
+        .button{
+            background-color: transparent;
+            font-weight:semibold ;
+            color: #17fd0f;;
+            font-size: 1rem;
+            padding: .5rem 1.5rem;
+            border: 1px solid #17fd0f;
+            border-radius: .5rem;
+            cursor: pointer;
+            transition: all 1s ease;
+        }
+    }
+}
