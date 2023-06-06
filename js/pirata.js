@@ -21,6 +21,44 @@ if (nombre === "") {
   console.log("Hola, " + nombre + "!");
 }
 
+//Simulador
+const numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+
+
+function verificarNumero(numero) {
+  if (numero === numeroAleatorio) {
+    return "¡Felicitaciones! ¡Adivinaste el número!";
+  } else if (numero > numeroAleatorio) {
+    return "Intenta con un número más bajo.";
+  } else {
+    return "Intenta con un número más alto.";
+  }
+}
+
+function iniciarSimulador() {
+  
+  const numeroIngresado = parseInt(prompt("Ingresa un número del 1 al 100:"));
+
+  if (isNaN(numeroIngresado) || numeroIngresado < 1 || numeroIngresado > 100) {
+    alert("Por favor, ingresa un número válido del 1 al 100.");
+    iniciarSimulador(); 
+    return;
+  }
+
+  const resultado = verificarNumero(numeroIngresado);
+  alert(resultado);
+
+  
+  const jugarDeNuevo = confirm("¿Deseas jugar de nuevo?");
+  if (jugarDeNuevo) {
+    iniciarSimulador(); 
+  } else {
+    alert("¡Gracias por jugar!");
+  }
+}
+
+iniciarSimulador();
+
 // var searchInput = document.getElementById('search-input');
 // var searchButton = document.getElementById('search-button');
 // var searchResults = document.getElementById('search-results');
