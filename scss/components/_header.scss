@@ -1,44 +1,130 @@
-header{
-    background-color: rgb(52, 58, 64);
-    height: 80px;
-}
 .logo_pirata{
     display: flex;
-    height: 60px;
+    height: 100px;
     justify-content: center;
 }
-.nav{
-    ul{
-        li{
-            a{
-                display: flex;
-                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-                font-size: 1.2rem;
-                text-decoration: none;
-                color: white;
-                justify-content:space-around ;
-            }
-        }
+.formulario{
+    position: relative;
+    right: 450px;
+    top: 50px;
+    .input{
+        height: 40px;
+        border: 1px solid black;
+        border-radius: .6rem;
+        text-align: center;
     }
-    .formulario{
-        margin-left: 1600px;
-        position: relative;
-        bottom: 60px;
-        .input{
-            height: 40px;
-            border: 1px solid black;
-            border-radius: .6rem;
-        }
-        .button{
-            background-color: transparent;
-            font-weight:semibold ;
-            color: #17fd0f;;
-            font-size: 1rem;
-            padding: .5rem 1.5rem;
-            border: 1px solid #17fd0f;
-            border-radius: .5rem;
-            cursor: pointer;
-            transition: all 1s ease;
-        }
+    .button{
+        background-color: transparent;
+        font-weight:semibold ;
+        color: #fd0f0f;;
+        font-size: 1rem;
+        padding: .5rem 1.5rem;
+        border: 1px solid #ff0c04;
+        border-radius: .5rem;
+        cursor: pointer;
+        transition: all 1s ease;
     }
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0 40px 0;
+}
+.container-icon{
+    position: relative;
+    bottom: 40px;
+}
+
+.count-products{
+    position: absolute;
+    top: 55%;
+    right: 0;
+
+    background-color: #000;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+#contador-productos{
+    font-size: 12px;
+}
+
+.container-cart-products{
+    position: absolute;
+    top: 50px;
+    right: 0;
+
+    background-color: #fff;
+    width: 400px;
+    z-index: 1;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
+    border-radius: 10px;
+    
+}
+
+.cart-product{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.20);
+}
+
+.info-cart-product{
+    display: flex;
+    justify-content: space-between;
+    flex: 0.8;
+}
+
+.titulo-producto-carrito{
+    font-size: 20px;
+}
+
+.precio-producto-carrito{
+    font-weight: 700;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.cantidad-producto-carrito{
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.icon-close{
+    width: 25px;
+    height: 25px;
+}
+
+.icon-close:hover{
+    stroke: red;
+    cursor: pointer;
+}
+
+.cart-total{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    gap: 20px;
+}
+
+.cart-total h3{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.total-pagar{
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.hidden-cart{
+    display: none;
 }

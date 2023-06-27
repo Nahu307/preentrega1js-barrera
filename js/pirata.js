@@ -1,139 +1,131 @@
-// Algoritmo con un condicional en Js
+const btnCart = document.querySelector('.container-cart-icon');
+const containerCartProducts = document.querySelector(
+	'.container-cart-products'
+);
 
-let esLunes = true;
+btnCart.addEventListener('click', () => {
+	containerCartProducts.classList.toggle('hidden-cart');
+});
 
-if (esLunes) {
-  console.log("Hoy es lunes. Ánimo, es el primer día de la semana.");
-} else {
-  console.log("Hoy no es lunes. Disfruta del día.");
-}
-
-
-
-// Algoritmo utilizando un ciclo en Js
-
-let nombre = prompt("Ingresa tu nombre:");
-
-// Verificar si el nombre está vacío
-if (nombre === "") {
-  console.log("No ingresaste un nombre.");
-} else {
-  console.log("Hola, " + nombre + "!");
-}
-
-//Simulador
-const numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+/* ========================= */
+const cartInfo = document.querySelector('.cart-product');
+const rowProduct = document.querySelector('.row-product');
 
 
-function verificarNumero(numero) {
-  if (numero === numeroAleatorio) {
-    return "¡Felicitaciones! ¡Adivinaste el número!";
-  } else if (numero > numeroAleatorio) {
-    return "Intenta con un número más bajo.";
-  } else {
-    return "Intenta con un número más alto.";
-  }
-}
+const productsList = document.querySelector('.container-items');
 
-function iniciarSimulador() {
-  
-  const numeroIngresado = parseInt(prompt("Ingresa un número del 1 al 100:"));
+let allProducts = [];
 
-  if (isNaN(numeroIngresado) || numeroIngresado < 1 || numeroIngresado > 100) {
-    alert("Por favor, ingresa un número válido del 1 al 100.");
-    iniciarSimulador(); 
-    return;
-  }
+const valorTotal = document.querySelector('.total-pagar');
 
-  const resultado = verificarNumero(numeroIngresado);
-  alert(resultado);
+const countProducts = document.querySelector('#contador-productos');
 
-  
-  const jugarDeNuevo = confirm("¿Deseas jugar de nuevo?");
-  if (jugarDeNuevo) {
-    iniciarSimulador(); 
-  } else {
-    alert("¡Gracias por jugar!");
-  }
-}
+const cartEmpty = document.querySelector('.cart-empty');
+const cartTotal = document.querySelector('.cart-total');
 
-iniciarSimulador();
+productsList.addEventListener('click', e => {
+	if (e.target.classList.contains('btn-add-cart')) {
+		const product = e.target.parentElement;
 
-// var searchInput = document.getElementById('search-input');
-// var searchButton = document.getElementById('search-button');
-// var searchResults = document.getElementById('search-results');
+		const infoProduct = {
+			quantity: 1,
+			title: product.querySelector('h2').textContent,
+			price: product.querySelector('p').textContent,
+		};
+
+		const exits = allProducts.some(
+			product => product.title === infoProduct.title
+		);
+
+		if (exits) {
+			const products = allProducts.map(product => {
+				if (product.title === infoProduct.title) {
+					product.quantity++;
+					return product;
+				} else {
+					return product;
+				}
+			});
+			allProducts = [...products];
+		} else {
+			allProducts = [...allProducts, infoProduct];
+		}
+
+		showHTML();
+	}
+});
+
+rowProduct.addEventListener('click', e => {
+	if (e.target.classList.contains('icon-close')) {
+		const product = e.target.parentElement;
+		const title = product.querySelector('p').textContent;
+
+		allProducts = allProducts.filter(
+			product => product.title !== title
+		);
+
+		console.log(allProducts);
+
+		showHTML();
+	}
+});
 
 
-// searchButton.addEventListener('click', function() {
-// var searchTerm = searchInput.value;
+const showHTML = () => {
+	if (!allProducts.length) {
+		cartEmpty.classList.remove('hidden');
+		rowProduct.classList.add('hidden');
+		cartTotal.classList.add('hidden');
+	} else {
+		cartEmpty.classList.add('hidden');
+		rowProduct.classList.remove('hidden');
+		cartTotal.classList.remove('hidden');
+	}
 
+	rowProduct.innerHTML = '';
 
-// var results = performSearch(searchTerm);
-// displayResults(results);
-// });
+	let total = 0;
+	let totalOfProducts = 0;
 
+	allProducts.forEach(product => {
+		const containerProduct = document.createElement('div');
+		containerProduct.classList.add('cart-product');
 
-// function performSearch(searchTerm) {
-  
-// var exampleResults = [
-//     { title: 'Resultado 1', url: 'http://ejemplo.com/resultado1' },
-//     { title: 'Resultado 2', url: 'http://ejemplo.com/resultado2' },
-//     { title: 'Resultado 3', url: 'http://ejemplo.com/resultado3' }
-// ];
+		containerProduct.innerHTML = `
+            <div class="info-cart-product">
+                <span class="cantidad-producto-carrito">${product.quantity}</span>
+                <p class="titulo-producto-carrito">${product.title}</p>
+                <span class="precio-producto-carrito">${product.price}</span>
+            </div>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="icon-close"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                />
+            </svg>
+        `;
 
-// return exampleResults;
-// }
+		rowProduct.append(containerProduct);
 
+		total =
+			total + parseInt(product.quantity * product.price.slice(1));
+		totalOfProducts = totalOfProducts + product.quantity;
+	});
 
-// function displayResults(results) {
-  
-// searchResults.innerHTML = '';
+	valorTotal.innerText = `$${total}`;
+	countProducts.innerText = totalOfProducts;
+};
 
-  
-// results.forEach(function(result) {
-//     var resultItem = document.createElement('a');
-//     resultItem.href = result.url;
-//     resultItem.textContent = result.title;
-//     searchResults.appendChild(resultItem);
-// });
-// }
-
-// console.log("Estamos conectado")
-
-// let edad = 18;
-// let licenciaConducir = true;
-// if (edad >= 18 && licenciaConducir) {
-// console.log("Excelente");
-// console.log("Toma, puedes manejar el auto");
-// } else if (edad >= 18 && !licenciaConducir) {
-// console.log("Excelente");
-// console.log("Vamos a sacar el carnet");
-// } else {
-// console.log("Vuelve más tarde");
-// }
-
-//la estructura consta de 3 partes
-//desde ---> Inicializacion
-//hasta ---> Condicion
-//
-
-//for(let i=0; i< 10; i++){
-//alert(i)
-
-    //VARIABLES GLOBALES
-//     let billetera
-//     let auto
-
-     //FIZZ BUZZ!!!
-// for(let i = 1; i<= 100; i++){
-    //VARIABLES LOCALES
-//     if(i % 3 === 0 && i % 5 === 0){
-//         console.log("FizzBuzz");
-//     }else if (i % 3 === 0){
-//         console.log("FIZZ");
-//     }else if(i % 5 === 0){
-//         console.log("Buzz");
-//     }else{
-//         console.log(i);
-//     }
-// }
+let searchButton = document.getElementById('searchButton');
+searchButton.addEventListener('click', function() {
+let searchInput = document.getElementById('searchInput').value;
+console.log('Se ha realizado la búsqueda de:', searchInput);
+});
