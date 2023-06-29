@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+body {
+  background-color: rgb(73, 170, 86);
+}
+
 .logo_pirata {
   display: flex;
   height: 100px;
@@ -23,10 +27,10 @@
 .formulario .button {
   background-color: transparent;
   font-weight: semibold;
-  color: #fd0f0f;
+  color: #000000;
   font-size: 1rem;
   padding: 0.5rem 1.5rem;
-  border: 1px solid #ff0c04;
+  border: 1px solid #000000;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 1s ease;
@@ -65,7 +69,7 @@ header {
   position: absolute;
   top: 50px;
   right: 0;
-  background-color: #fff;
+  background-color: rgb(212, 224, 217);
   width: 400px;
   z-index: 1;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -137,7 +141,6 @@ body {
   margin: 0 auto;
   max-width: 1200px;
   font-family: "Lato";
-  color: #333;
 }
 
 .icon-cart {
@@ -170,20 +173,19 @@ body {
   width: 100%;
   height: 300px;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   border-radius: 10px 10px 0 0;
   transition: all 0.5s;
 }
-
-.item figure {
+.item img:hover {
+  transform: scale(1.2);
+}
+.item img figure {
   overflow: hidden;
 }
 
-.item:hover img {
-  transform: scale(1.2);
-}
-
 .info-product {
+  color: #000000;
   padding: 15px 30px;
   line-height: 2;
   display: flex;
@@ -199,8 +201,8 @@ body {
 .info-product button {
   border: none;
   background: none;
-  background-color: #000;
-  color: #fff;
+  background-color: #000000;
+  color: #ffffff;
   padding: 15px 10px;
   cursor: pointer;
 }

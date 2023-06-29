@@ -1,3 +1,22 @@
+function verificarEdad() {
+	const edad = parseInt(prompt("Por favor, ingresa tu edad:"));
+	if (isNaN(edad)) {
+	alert("Por favor, ingresa un número válido.");
+	redirigirPagina("https://www.example.com/error.html");
+	} else if (edad < 18) {
+	alert("Lo siento, debes tener al menos 18 años para acceder a esta página web.");
+	redirigirPagina("https://www.example.com/error.html"); 
+	} else {
+	alert("¡Bienvenido/a a nuestra página web!");
+	}
+}
+
+function redirigirPagina(url) {
+	window.location.href = url;
+}
+
+verificarEdad();
+
 const btnCart = document.querySelector('.container-cart-icon');
 const containerCartProducts = document.querySelector(
 	'.container-cart-products'
@@ -129,3 +148,5 @@ searchButton.addEventListener('click', function() {
 let searchInput = document.getElementById('searchInput').value;
 console.log('Se ha realizado la búsqueda de:', searchInput);
 });
+
+localStorage.setItem("Bienvenidos","¡Hola Piratas!")
