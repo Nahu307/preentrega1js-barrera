@@ -10,7 +10,7 @@
 <body>
     <header>
         <img class="logo_pirata" src="./img/POTC_Logo.png" alt="">
-        <form class="formulario">
+        <form class="formulario" id="searchForm">
             <input class="input" type="text" id="searchInput" placeholder="Buscar">
             <button class="button" id="searchButton" type="submit">Buscar</button>
         </form>
@@ -36,7 +36,6 @@
                     <span id="contador-productos">0</span>
                 </div>
             </div>
-
             <div class="container-cart-products hidden-cart">
                 <div class="row-product hidden">
                     <div class="cart-product">
@@ -138,6 +137,7 @@
         </div>
     </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.1/toastify.min.js"></script>
     <script src="./js/pirata.js"></script>
 </body>
 </html>

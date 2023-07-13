@@ -1,7 +1,5 @@
 const btnCart = document.querySelector('.container-cart-icon');
-const containerCartProducts = document.querySelector(
-	'.container-cart-products'
-);
+const containerCartProducts = document.querySelector('.container-cart-products');
 btnCart.addEventListener('click', () => {
 containerCartProducts.classList.toggle('hidden-cart');
 });
@@ -13,7 +11,7 @@ const valorTotal = document.querySelector('.total-pagar');
 const countProducts = document.querySelector('#contador-productos');
 const cartEmpty = document.querySelector('.cart-empty');
 const cartTotal = document.querySelector('.cart-total');
-productsList.addEventListener('click', e => {
+productsList.addEventListener('click', (e) => {
 if (e.target.classList.contains('btn-add-cart')) {
 const product = e.target.parentElement;
 const infoProduct = {
@@ -21,10 +19,9 @@ quantity: 1,
 title: product.querySelector('h2').textContent,
 price: product.querySelector('p').textContent,
 };
-const exits = allProducts.some(
-product => product.title === infoProduct.title);
-if (exits) {
-const products = allProducts.map(product => {
+const exists = allProducts.some((product) => product.title === infoProduct.title);
+if (exists) {
+const products = allProducts.map((product) => {
 if (product.title === infoProduct.title) {
 product.quantity++;
 return product;
@@ -36,17 +33,16 @@ allProducts = [...products];
 } else {
 allProducts = [...allProducts, infoProduct];
 }
+guardarCarrito();
 showHTML();
 }
 });
-rowProduct.addEventListener('click', e => {
+rowProduct.addEventListener('click', (e) => {
 if (e.target.classList.contains('icon-close')) {
 const product = e.target.parentElement;
 const title = product.querySelector('p').textContent;
-allProducts = allProducts.filter(
-product => product.title !== title
-);
-console.log(allProducts);
+allProducts = allProducts.filter((product) => product.title !== title);
+guardarCarrito();
 showHTML();
 }
 });
@@ -63,7 +59,7 @@ cartTotal.classList.remove('hidden');
 rowProduct.innerHTML = '';
 let total = 0;
 let totalOfProducts = 0;
-allProducts.forEach(product => {
+allProducts.forEach((product) => {
 const containerProduct = document.createElement('div');
 containerProduct.classList.add('cart-product');
 containerProduct.innerHTML = `
@@ -79,21 +75,29 @@ viewBox="0 0 24 24"
 stroke-width="1.5"
 stroke="currentColor"
 class="icon-close">
-<path stroke-linecap="round"
-stroke-linejoin="round"
-d="M6 18L18 6M6 6l12 12"/>
+<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
 </svg>
 `;
 rowProduct.append(containerProduct);
-total =
-total + parseInt(product.quantity * product.price.slice(1));
+total = total + parseInt(product.quantity * product.price.slice(1));
 totalOfProducts = totalOfProducts + product.quantity;
 });
 valorTotal.innerText = `$${total}`;
 countProducts.innerText = totalOfProducts;
 };
 let searchButton = document.getElementById('searchButton');
-searchButton.addEventListener('click', function() {
+searchButton.addEventListener('click', function () {
 let searchInput = document.getElementById('searchInput').value;
 console.log('Se ha realizado la búsqueda de:', searchInput);
 });
+function guardarCarrito() {
+localStorage.setItem('carrito', JSON.stringify(allProducts));
+}
+function cargarCarrito() {
+const carrito = localStorage.getItem('carrito');
+if (carrito) {
+allProducts = JSON.parse(carrito);
+showHTML();
+}
+}
+window.addEventListener('DOMContentLoaded', cargarCarrito);
