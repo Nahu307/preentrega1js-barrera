@@ -101,3 +101,36 @@ showHTML();
 }
 }
 window.addEventListener('DOMContentLoaded', cargarCarrito);
+const searchForm = document.getElementById('searchForm');
+const searchInput = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+searchInput.addEventListener('input', function() {
+const searchTerm = searchInput.value;
+performSearch(searchTerm);
+});
+function performSearch(searchTerm) {
+searchResults.innerHTML = '';
+const resultsArray = juegos.filter(function(juego) {
+return juego.toLowerCase().includes(searchTerm.toLowerCase());
+});
+displayResults(resultsArray);
+}
+function displayResults(resultsArray) {
+resultsArray.forEach(function(result) {
+const resultItem = document.createElement('div');
+resultItem.textContent = result;
+searchResults.appendChild(resultItem);
+});
+}
+function fetchJuegos() {
+fetch('./juegos.json')
+.then(response => response.json())
+.then(data => {
+const juegos = data.juegos;
+displayResults(juegos);
+})
+.catch(error => {
+console.error('Error al obtener la lista de juegos:', error);
+});
+}
+window.addEventListener('DOMContentLoaded', fetchJuegos);
