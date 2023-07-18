@@ -123,7 +123,7 @@ searchResults.appendChild(resultItem);
 });
 }
 function fetchJuegos() {
-fetch('./juegos.json')
+fetch('../json/juegos.json')
 .then(response => response.json())
 .then(data => {
 const juegos = data.juegos;
