@@ -12,30 +12,7 @@ body {
   display: flex;
   height: 130px;
   position: relative;
-  right: 110px;
-}
-
-.formulario {
-  position: relative;
-  right: 450px;
-  top: 270px;
-}
-.formulario .input {
-  height: 40px;
-  border: 1px solid black;
-  border-radius: 0.6rem;
-  text-align: center;
-}
-.formulario .button {
-  background-color: transparent;
-  font-weight: semibold;
-  color: #000000;
-  font-size: 1rem;
-  padding: 0.5rem 1.5rem;
-  border: 1px solid #000000;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: all 1s ease;
+  right: 400px;
 }
 
 header {
@@ -46,7 +23,7 @@ header {
 
 .container-icon {
   position: relative;
-  bottom: 65px;
+  bottom: 50px;
 }
 
 .count-products {
@@ -616,6 +593,55 @@ header {
 .s6 {
   top: 60px;
   left: 370px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: absolute;
+  top: 30%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+}
+ul li {
+  list-style: none;
+  margin: 0 15px;
+}
+ul li a {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  background: #333;
+  border-radius: 50%;
+  font-size: 30px;
+  color: #666;
+  transition: 0.5s;
+}
+ul li a:hover {
+  color: #1533b6;
+  box-shadow: 0 0 5px #1533b6;
+  text-shadow: 0 0 5px #1533b6;
+}
+ul li a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #1533b6;
+  transition: 0.5s;
+  transform: scale(0.9);
+  z-index: -1;
+}
+ul li a::before:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #1533b6;
 }
 
 body {
